@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111827">
+    <meta name="description" content="Jogue forca com um amigo na mesma tela, sem internet.">
+    <title>Forca Local</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./words.js"></script>
+    <script src="./local-game.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html" aria-label="Forca Local - início">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span>Forca <span class="brand-muted">Local</span></span>
+        </a>
+        <span class="header-note">Dois jogadores, uma tela, zero internet</span>
+      </header>
+
+      <section id="setup-screen" class="card setup-card">
+        <p class="eyebrow">MULTIPLAYER LOCAL</p>
+        <h1>Forca para<br><span>jogar lado a lado.</span></h1>
+        <p class="intro">Revezem os palpites no mesmo computador. Sem sala, sem código e sem internet.</p>
+
+        <form id="setup-form" class="form-stack">
+          <label for="player-one">Jogador 1</label>
+          <input id="player-one" maxlength="20" autocomplete="off" placeholder="Nome do primeiro jogador" required>
+          <label for="player-two">Jogador 2</label>
+          <input id="player-two" maxlength="20" autocomplete="off" placeholder="Nome do segundo jogador" required>
+          <button class="button button-primary" type="submit">Começar partida</button>
+        </form>
+      </section>
+
+      <section id="game-screen" class="card game-card" hidden>
+        <div class="game-topbar">
+          <div>
+            <p class="eyebrow">PARTIDA LOCAL</p>
+            <h1 class="room-heading">Vez de <span id="current-player" class="room-code"></span></h1>
+          </div>
+          <div class="topbar-actions">
+            <button id="new-match-button" class="button button-quiet button-small" type="button">Nova partida</button>
+          </div>
+        </div>
+
+        <p id="game-message" class="game-message" role="status" aria-live="polite"></p>
+        <div class="scoreboard">
+          <div class="score-card" id="score-card-0"><span id="score-name-0"></span><strong id="score-0">0</strong></div>
+          <span class="score-divider">×</span>
+          <div class="score-card" id="score-card-1"><span id="score-name-1"></span><strong id="score-1">0</strong></div>
+        </div>
+
+        <div id="playing-panel" class="playing-panel">
+          <div class="game-layout">
+            <div class="drawing-card">
+              <svg class="hangman" viewBox="0 0 220 220" role="img" aria-label="Desenho da forca">
+                <path class="gallows-line" d="M25 198h150M58 198V24h92v22M58 61l34-37"></path>
+                <circle id="part-head" class="body-part" cx="150" cy="68" r="18"></circle>
+                <path id="part-body" class="body-part" d="M150 86v48"></path>
+                <path id="part-arm-left" class="body-part" d="m150 98-26 22"></path>
+                <path id="part-arm-right" class="body-part" d="m150 98 26 22"></path>
+                <path id="part-leg-left" class="body-part" d="m150 134-25 34"></path>
+                <path id="part-leg-right" class="body-part" d="m150 134 25 34"></path>
+              </svg>
+              <p class="mistakes"><strong id="wrong-count">0</strong> de 6 erros</p>
+            </div>
+            <div class="word-card">
+              <p class="eyebrow">PALAVRA SECRETA</p>
+              <div id="word-slots" class="word-slots" aria-label="Letras da palavra"></div>
+              <p id="used-letters" class="used-letters">Letras tentadas: nenhuma</p>
+              <div id="keyboard" class="keyboard" aria-label="Escolha uma letra"></div>
+            </div>
+          </div>
+          <button id="restart-button" class="button button-primary" type="button" hidden>Próxima palavra</button>
+        </div>
+      </section>
+
+      <footer class="site-footer">Toda a partida acontece neste dispositivo. Divirtam-se!</footer>
+    </main>
+  </body>
+</html>
